@@ -14,6 +14,7 @@
 		F02E8FF4236BBAC60005EC94 /* PullListApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F02E8FF2236BBAC60005EC94 /* PullListApp.xcdatamodeld */; };
 		F02E8FF6236BBAC80005EC94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F02E8FF5236BBAC80005EC94 /* Assets.xcassets */; };
 		F02E8FF9236BBAC80005EC94 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F02E8FF7236BBAC80005EC94 /* LaunchScreen.storyboard */; };
+		F02E9001236BBB000005EC94 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9000236BBB000005EC94 /* Comics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		F02E8FF5236BBAC80005EC94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F02E8FF8236BBAC80005EC94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F02E8FFA236BBAC80005EC94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F02E9000236BBB000005EC94 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				F02E8FE9236BBAC60005EC94 /* AppDelegate.swift */,
 				F02E8FEB236BBAC60005EC94 /* SceneDelegate.swift */,
+				F02E9000236BBB000005EC94 /* Comics.swift */,
 				F02E8FED236BBAC60005EC94 /* ViewController.swift */,
 				F02E8FEF236BBAC60005EC94 /* Main.storyboard */,
 				F02E8FF5236BBAC80005EC94 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02E9001236BBB000005EC94 /* Comics.swift in Sources */,
 				F02E8FEE236BBAC60005EC94 /* ViewController.swift in Sources */,
 				F02E8FEA236BBAC60005EC94 /* AppDelegate.swift in Sources */,
 				F02E8FF4236BBAC60005EC94 /* PullListApp.xcdatamodeld in Sources */,
