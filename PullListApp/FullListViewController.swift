@@ -10,7 +10,7 @@ import UIKit
 
 class FullListViewController: UIViewController {
     
-    var results: [Comic] = []
+    var comics: [Comic] = []
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -57,7 +57,7 @@ extension FullListViewController: UISearchBarDelegate{
         guard let searchText = searchBar.text,
         !searchText.isEmpty else {return}
         
-        results = []
+        comics = []
         
         let url = createComicApiURL(searchBarText: searchText)
         
@@ -77,7 +77,7 @@ extension FullListViewController: UISearchBarDelegate{
                     
                     let downloadedResults = try decoder.decode(Comics.self, from: data)
                     
-                    self.results = downloadedResults.results
+                    self.comics = downloadedResults.comics
                     
                 } catch let error{
                     print(error)
@@ -105,13 +105,13 @@ extension FullListViewController: UITableViewDelegate{
 
 extension FullListViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count
+        return comics.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ComicListing", for: indexPath)
         
-        let comic = results[indexPath.row]
+        let comic = comics[indexPath.row]
         
         cell.textLabel?.text = comic.title
         cell.detailTextLabel?.text = comic.creators
@@ -136,7 +136,7 @@ extension FullListViewController: UITableViewDataSource{
         case "showDetails":
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
             
-            let comic = results[indexPath.row]
+            let comic = comics[indexPath.row]
             
             let vc = segue.destination as! ComicDetailViewController
             

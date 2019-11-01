@@ -9,7 +9,7 @@
 import Foundation
 
 struct Comics: Codable{
-    var results: [Comic]
+    var comics: [Comic]
 }
 
 struct Comic: Codable{
