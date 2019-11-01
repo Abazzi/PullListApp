@@ -109,12 +109,12 @@ extension FullListViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ComicListing", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ComicTableViewCell", for: indexPath) as! ComicTableViewCell
         
         let comic = comics[indexPath.row]
         
-        cell.textLabel?.text = comic.title
-        cell.detailTextLabel?.text = comic.creators
+        cell.title.text = comic.title
+        cell.creator.text = comic.creators
 
         let imageURL = URL(string: "https://dak9jkjr5v1f7.cloudfront.net/images/\(comic.diamondID).thumbnail.png")!
         
@@ -122,7 +122,7 @@ extension FullListViewController: UITableViewDataSource{
             url, responce, error in
             if error == nil, let url = url, let data = try? Data(contentsOf: url), let image = UIImage(data: data){
                 DispatchQueue.main.async {
-                    cell.imageView?.image = image
+                    cell.cover.image = image
                 }
             }
         })
@@ -133,7 +133,7 @@ extension FullListViewController: UITableViewDataSource{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "showDetails":
+        case "showComicDetails":
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
             
             let comic = comics[indexPath.row]

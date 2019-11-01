@@ -36,21 +36,23 @@ class ComicDetailViewController: UIViewController {
             
             comicDescription.text = comic.description
             
+            let imageURL = URL(string: "https://dak9jkjr5v1f7.cloudfront.net/images/\(diamondID!).thumbnail.png")!
+            
+            let getImageTask = URLSession.shared.downloadTask(with: imageURL, completionHandler: {
+                url, responce, error in
+                if error == nil, let url = url, let data = try? Data(contentsOf: url), let image = UIImage(data: data){
+                    DispatchQueue.main.async {
+                        self.cover?.image = image
+                    }
+                }
+            })
+            
+            getImageTask.resume()
+
         }
-        
-        let imageURL = URL(string: "https://dak9jkjr5v1f7.cloudfront.net/images/\(diamondID).thumbnail.png")!
-               
-               let getImageTask = URLSession.shared.downloadTask(with: imageURL, completionHandler: {
-                   url, responce, error in
-                   if error == nil, let url = url, let data = try? Data(contentsOf: url), let image = UIImage(data: data){
-                       DispatchQueue.main.async {
-                           self.cover?.image = image
-                       }
-                   }
-               })
-               
-               getImageTask.resume()
     }
+        
+       
         // Do any additional setup after loading the view.
 }
     
