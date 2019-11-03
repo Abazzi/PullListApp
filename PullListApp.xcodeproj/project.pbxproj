@@ -17,7 +17,7 @@
 		F02E9005236BBF040005EC94 /* FullListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9004236BBF040005EC94 /* FullListViewController.swift */; };
 		F02E9007236BE61F0005EC94 /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */; };
 		F02E9009236C31690005EC94 /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9008236C31690005EC94 /* ComicTableViewCell.swift */; };
-		F02E900B236F54440005EC94 /* PullListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E900A236F54440005EC94 /* PullListViewController.swift */; };
+		F02E900D236F54C20005EC94 /* PullListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E900C236F54C20005EC94 /* PullListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		F02E9004236BBF040005EC94 /* FullListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullListViewController.swift; sourceTree = "<group>"; };
 		F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		F02E9008236C31690005EC94 /* ComicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
-		F02E900A236F54440005EC94 /* PullListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullListViewController.swift; sourceTree = "<group>"; };
+		F02E900C236F54C20005EC94 /* PullListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,7 @@
 				F02E8FEB236BBAC60005EC94 /* SceneDelegate.swift */,
 				F02E9000236BBB000005EC94 /* Comics.swift */,
 				F02E8FEF236BBAC60005EC94 /* Main.storyboard */,
-				F02E900A236F54440005EC94 /* PullListViewController.swift */,
+				F02E900C236F54C20005EC94 /* PullListTableViewController.swift */,
 				F02E9004236BBF040005EC94 /* FullListViewController.swift */,
 				F02E9008236C31690005EC94 /* ComicTableViewCell.swift */,
 				F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */,
@@ -159,8 +159,8 @@
 				F02E8FEA236BBAC60005EC94 /* AppDelegate.swift in Sources */,
 				F02E8FF4236BBAC60005EC94 /* PullListApp.xcdatamodeld in Sources */,
 				F02E8FEC236BBAC60005EC94 /* SceneDelegate.swift in Sources */,
+				F02E900D236F54C20005EC94 /* PullListTableViewController.swift in Sources */,
 				F02E9005236BBF040005EC94 /* FullListViewController.swift in Sources */,
-				F02E900B236F54440005EC94 /* PullListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
