@@ -15,30 +15,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dress" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-ee-CUk">
-                                <rect key="frame" x="87" y="130" width="240" height="327"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dress" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-ee-CUk">
+                                <rect key="frame" x="0.0" y="-22" width="127" height="349"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="327" id="91W-YF-8Y1"/>
                                     <constraint firstAttribute="width" constant="240" id="bBd-7l-EJu"/>
-                                </constraints>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exciting" translatesAutoresizingMaskIntoConstraints="NO" id="Os6-oj-gUG">
-                                <rect key="frame" x="87" y="526" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="aW1-sB-dRh"/>
-                                    <constraint firstAttribute="width" constant="240" id="frC-aX-MMg"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Kjp-ee-CUk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="0cC-dO-Vm4"/>
-                            <constraint firstItem="Os6-oj-gUG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="JhK-cF-4Bx"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Os6-oj-gUG" secondAttribute="trailing" constant="87" id="VWi-rN-n88"/>
                             <constraint firstItem="Kjp-ee-CUk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="86" id="WWj-1j-YWC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Os6-oj-gUG" secondAttribute="bottom" constant="208" id="lqy-pk-aa6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kjp-ee-CUk" secondAttribute="trailing" constant="87" id="owo-7m-Ew4"/>
-                            <constraint firstItem="Os6-oj-gUG" firstAttribute="top" secondItem="Kjp-ee-CUk" secondAttribute="bottom" constant="69" id="ub0-Jd-hDG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -50,6 +39,5 @@
     </scenes>
     <resources>
         <image name="dress" width="1417" height="1890"/>
-        <image name="exciting" width="1890" height="1417"/>
     </resources>
 </document>

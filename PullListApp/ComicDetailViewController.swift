@@ -36,7 +36,7 @@ class ComicDetailViewController: UIViewController {
             
             comicDescription.text = comic.description
             
-            let imageURL = URL(string: "https://dak9jkjr5v1f7.cloudfront.net/images/\(diamondID!).thumbnail.png")!
+            let imageURL = URL(string: "https://dak9jkjr5v1f7.cloudfront.net/images/\(comic.diamondID).thumbnail.png")!
             
             let getImageTask = URLSession.shared.downloadTask(with: imageURL, completionHandler: {
                 url, responce, error in
