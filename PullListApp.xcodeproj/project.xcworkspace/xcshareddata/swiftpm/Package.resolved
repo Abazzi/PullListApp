@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SideMenu",
+        "repositoryURL": "https://github.com/jonkykong/SideMenu.git",
+        "state": {
+          "branch": null,
+          "revision": "fb25017bc7238145c4d6405255c3aeaa7993b4c7",
+          "version": "6.4.6"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

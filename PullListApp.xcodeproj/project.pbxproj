@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		F02E9007236BE61F0005EC94 /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */; };
 		F02E9009236C31690005EC94 /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9008236C31690005EC94 /* ComicTableViewCell.swift */; };
 		F02E900D236F54C20005EC94 /* PullListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E900C236F54C20005EC94 /* PullListTableViewController.swift */; };
+		F02E9012236F60BB0005EC94 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = F02E9011236F60BB0005EC94 /* SideMenu */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02E9012236F60BB0005EC94 /* SideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +100,9 @@
 			dependencies = (
 			);
 			name = PullListApp;
+			packageProductDependencies = (
+				F02E9011236F60BB0005EC94 /* SideMenu */,
+			);
 			productName = PullListApp;
 			productReference = F02E8FE6236BBAC60005EC94 /* PullListApp.app */;
 			productType = "com.apple.product-type.application";
@@ -126,6 +131,9 @@
 				Base,
 			);
 			mainGroup = F02E8FDD236BBAC60005EC94;
+			packageReferences = (
+				F02E9010236F60BB0005EC94 /* XCRemoteSwiftPackageReference "SideMenu" */,
+			);
 			productRefGroup = F02E8FE7236BBAC60005EC94 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -358,6 +366,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F02E9010236F60BB0005EC94 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.4.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F02E9011236F60BB0005EC94 /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F02E9010236F60BB0005EC94 /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		F02E8FF2236BBAC60005EC94 /* PullListApp.xcdatamodeld */ = {
