@@ -19,6 +19,7 @@
 		F02E9009236C31690005EC94 /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9008236C31690005EC94 /* ComicTableViewCell.swift */; };
 		F02E900D236F54C20005EC94 /* PullListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E900C236F54C20005EC94 /* PullListTableViewController.swift */; };
 		F02E9012236F60BB0005EC94 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = F02E9011236F60BB0005EC94 /* SideMenu */; };
+		F0B829FF23731C5300C8133E /* PullListResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B829FE23731C5300C8133E /* PullListResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		F02E9008236C31690005EC94 /* ComicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
 		F02E900C236F54C20005EC94 /* PullListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullListTableViewController.swift; sourceTree = "<group>"; };
+		F0B829FE23731C5300C8133E /* PullListResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullListResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,20 +70,37 @@
 		F02E8FE8236BBAC60005EC94 /* PullListApp */ = {
 			isa = PBXGroup;
 			children = (
+				F0B82A022373262200C8133E /* View Controllers */,
+				F0B82A00237325E700C8133E /* Models */,
 				F02E8FE9236BBAC60005EC94 /* AppDelegate.swift */,
 				F02E8FEB236BBAC60005EC94 /* SceneDelegate.swift */,
-				F02E9000236BBB000005EC94 /* Comics.swift */,
 				F02E8FEF236BBAC60005EC94 /* Main.storyboard */,
-				F02E900C236F54C20005EC94 /* PullListTableViewController.swift */,
-				F02E9004236BBF040005EC94 /* FullListViewController.swift */,
-				F02E9008236C31690005EC94 /* ComicTableViewCell.swift */,
-				F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */,
 				F02E8FF5236BBAC80005EC94 /* Assets.xcassets */,
 				F02E8FF7236BBAC80005EC94 /* LaunchScreen.storyboard */,
 				F02E8FFA236BBAC80005EC94 /* Info.plist */,
 				F02E8FF2236BBAC60005EC94 /* PullListApp.xcdatamodeld */,
 			);
 			path = PullListApp;
+			sourceTree = "<group>";
+		};
+		F0B82A00237325E700C8133E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F02E9000236BBB000005EC94 /* Comics.swift */,
+				F02E9008236C31690005EC94 /* ComicTableViewCell.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F0B82A022373262200C8133E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F02E900C236F54C20005EC94 /* PullListTableViewController.swift */,
+				F02E9004236BBF040005EC94 /* FullListViewController.swift */,
+				F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */,
+				F0B829FE23731C5300C8133E /* PullListResultsViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +184,7 @@
 				F02E9001236BBB000005EC94 /* Comics.swift in Sources */,
 				F02E9007236BE61F0005EC94 /* ComicDetailViewController.swift in Sources */,
 				F02E8FEA236BBAC60005EC94 /* AppDelegate.swift in Sources */,
+				F0B829FF23731C5300C8133E /* PullListResultsViewController.swift in Sources */,
 				F02E8FF4236BBAC60005EC94 /* PullListApp.xcdatamodeld in Sources */,
 				F02E8FEC236BBAC60005EC94 /* SceneDelegate.swift in Sources */,
 				F02E900D236F54C20005EC94 /* PullListTableViewController.swift in Sources */,
