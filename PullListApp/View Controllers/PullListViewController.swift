@@ -20,6 +20,7 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func addToPull(_ sender: Any) {
         print("Add button clicked")
                 
+        //Alert that prompts the user
         let alert = UIAlertController(title: "Add New Comic", message: "Enter a new Comic Title to your Pull List", preferredStyle: .alert)
                 
         alert.addTextField()
@@ -33,16 +34,30 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
                 return
             }
                     
-        //            self.items.append(itemToSave)
-            self.saveNewItem(name: itemToSave)
-            self.pullListTableView.reloadData()
+        self.saveNewItem(name: itemToSave)
+        self.pullListTableView.reloadData()
     })
+        
                 
         alert.addAction(cancelAction)
         alert.addAction(saveAction)
                 
         present(alert, animated: true, completion: nil)
         
+    }
+    
+    
+    //Code for gestures
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    //code for deleting row
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            pullList.remove(at: indexPath.row)
+            self.pullListTableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
     
@@ -81,7 +96,7 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
             loadItemsFromCoreData()
         }
 
-        // MARK: - Table view data source
+    // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
             // #warning Incomplete implementation, return the number of sections

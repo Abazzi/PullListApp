@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
-class FullListViewController: UIViewController {
+class FullListViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var comics: [Comic] = []
-
+    var comicTitle: String?
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,9 +23,17 @@ class FullListViewController: UIViewController {
         tableView.delegate = self
         searchBar.delegate = self
         tableView.dataSource = self
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(FullListViewController.longPress(longPressGestureRecognizer:)))
+        
+        self.view.addGestureRecognizer(longPressRecognizer)
+    
         // Do any additional setup after loading the view.
     }
-    
+
+   
+}
+
     func createComicApiURL(searchBarText: String) -> URL {
         
         //delete any non friendly characters
@@ -38,7 +48,34 @@ class FullListViewController: UIViewController {
         let url = URL(string: urlString)
         return url!
     }
+
+        func saveNewItem(name: String){
+            var pullList = [NSManagedObject]()
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
     
+            let managedContext = appDelegate.persistentContainer.viewContext
+    
+            let entity = NSEntityDescription.entity(forEntityName: "PullListItems", in: managedContext)!
+    
+            let item = NSManagedObject(entity: entity, insertInto: managedContext)
+    
+            item.setValue(name, forKey: "title")
+    
+            do {
+                try managedContext.save()
+                pullList.append(item)
+        
+        //{
+            }catch let error as NSError{
+                    print("Failed saving: \(error) - \(error.description)")
+            }
+}
+
+
+        
+        
+
     
     /*
     // MARK: - Navigation
@@ -50,7 +87,7 @@ class FullListViewController: UIViewController {
     }
     */
 
-}
+
 
 extension FullListViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -113,6 +150,8 @@ extension FullListViewController: UITableViewDataSource{
         
         let comic = comics[indexPath.row]
         
+        comicTitle = comic.title
+                
         cell.title.text = comic.title
         cell.creator.text = comic.creators
 
@@ -128,18 +167,46 @@ extension FullListViewController: UITableViewDataSource{
         })
         
         getImageTask.resume()
+        
+        
         return cell
+    }
+    
+    @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer){
+        if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
+            let touchPoint = longPressGestureRecognizer.location(in: self.view)
+            
+            
+            if tableView.indexPathForRow(at: touchPoint) != nil{
+                let alert = UIAlertController(title: nil, message: "Add to your Pull List", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                      switch action.style{
+                      case .default:
+                            if let index = self.comicTitle!.range(of: "#")?.lowerBound {
+                                let substring = self.comicTitle![..<index]
+                                let string = String(substring)
+                                
+                                saveNewItem(name: string)
+                                print(string)
+                        }
+                      case .cancel:
+                            print("cancel")
+                      case .destructive:
+                            print("destructive")
+                      @unknown default:
+                        fatalError()
+                    }}))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showComicDetails":
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
-            
             let comic = comics[indexPath.row]
-            
             let vc = segue.destination as! ComicDetailViewController
-            
             vc.comic = comic
         default:
             return
