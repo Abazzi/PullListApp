@@ -20,6 +20,7 @@
 		F02E9012236F60BB0005EC94 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = F02E9011236F60BB0005EC94 /* SideMenu */; };
 		F0F1567C23881B4F00CDB05B /* PullListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F1567B23881B4F00CDB05B /* PullListViewController.swift */; };
 		F0F1567E23881B6F00CDB05B /* WeeklyPullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F1567D23881B6F00CDB05B /* WeeklyPullViewController.swift */; };
+		F0F15680238B896900CDB05B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F1567F238B896900CDB05B /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		F02E9008236C31690005EC94 /* ComicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; };
 		F0F1567B23881B4F00CDB05B /* PullListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullListViewController.swift; sourceTree = "<group>"; };
 		F0F1567D23881B6F00CDB05B /* WeeklyPullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyPullViewController.swift; sourceTree = "<group>"; };
+		F0F1567F238B896900CDB05B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				F02E9004236BBF040005EC94 /* FullListViewController.swift */,
 				F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */,
 				F0F1567B23881B4F00CDB05B /* PullListViewController.swift */,
+				F0F1567F238B896900CDB05B /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				F02E9009236C31690005EC94 /* ComicTableViewCell.swift in Sources */,
 				F02E9001236BBB000005EC94 /* Comics.swift in Sources */,
 				F02E9007236BE61F0005EC94 /* ComicDetailViewController.swift in Sources */,
+				F0F15680238B896900CDB05B /* SettingsViewController.swift in Sources */,
 				F02E8FEA236BBAC60005EC94 /* AppDelegate.swift in Sources */,
 				F02E8FF4236BBAC60005EC94 /* PullListApp.xcdatamodeld in Sources */,
 				F02E8FEC236BBAC60005EC94 /* SceneDelegate.swift in Sources */,
