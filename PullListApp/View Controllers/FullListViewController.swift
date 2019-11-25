@@ -69,11 +69,6 @@ class FullListViewController: UIViewController, UIGestureRecognizerDelegate {
                     print("Failed saving: \(error) - \(error.description)")
             }
 }
-
-
-        
-        
-
     
     /*
     // MARK: - Navigation
@@ -107,26 +102,19 @@ extension FullListViewController: UISearchBarDelegate{
                 
                 do{
                     guard let data = data else {return}
-                    
                     let decoder = JSONDecoder()
-                    
                     let downloadedResults = try decoder.decode(Comics.self, from: data)
-                    
                     self.comics = downloadedResults.comics
-                    
                 } catch let error{
                     print(error)
                 }
-                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         }
         dataTask.resume()
-        
         searchBar.text = ""
-        
         searchBar.resignFirstResponder()
        }
    }
@@ -173,27 +161,22 @@ extension FullListViewController: UITableViewDataSource{
     @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer){
         if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
             let touchPoint = longPressGestureRecognizer.location(in: self.view)
-            
-            
+        
             if tableView.indexPathForRow(at: touchPoint) != nil{
                 let alert = UIAlertController(title: nil, message: "Would you like to add this title to your Pull List?", preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Add to Pull List", style: .default, handler: { action in
-                      switch action.style{
-                      case .default:
-                        if let index = self.comicTitle!.range(of: "#")?.lowerBound {
-                            let substring = self.comicTitle![..<index]
-                            let string = String(substring)
-                            saveNewItem(name: string)
-                            print(string)
-                        }
-                      case .cancel:
-                        print("cancel")
-                      case .destructive:
-                            print("destructive")
-                      @unknown default:
-                        fatalError()
-                    }}))
-                self.present(alert, animated: true, completion: nil)
+                let addComicAction = UIAlertAction(title: "Add to Pull List", style: .default, handler: { action in
+                     if let index = self.comicTitle!.range(of: "#")?.lowerBound {
+                     let substring = self.comicTitle![..<index]
+                     let string = String(substring)
+                     saveNewItem(name: string)
+                     print(string)
+                   }
+                })
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alert.addAction(addComicAction)
+                alert.addAction(cancelAction)
+                
+                self.present(alert, animated: true)
             }
         }
     }

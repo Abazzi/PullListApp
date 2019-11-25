@@ -11,9 +11,10 @@ import CoreData
 
 class PullListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    //MARK: Properties
     var pullList = [NSManagedObject]()
     var manageObjectContext: NSManagedObjectContext!
-    var eventArray = [PullListItems]()  // Where **Event** is an model name
+    var eventArray = [PullListItems]()
     
     
     //MARK: IBOutlets
@@ -74,9 +75,11 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         manageObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        self.loadSaveData()
         pullListTableView.delegate = self
         pullListTableView.dataSource = self
+        
+        self.loadSaveData()
+
         // Do any additional setup after loading the view.
     }
     
@@ -130,33 +133,6 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-//    func deleteItem(title: String){
-//           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//
-//            let managedContext = appDelegate.persistentContainer.viewContext
-//
-//            let entity = NSEntityDescription.entity(forEntityName: "PullListItems", in: managedContext)!
-//
-//            let item = NSManagedObject(entity: entity, insertInto: managedContext)
-//
-//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PullListItems")
-//            fetchRequest.predicate = NSPredicate(format: "title = %@", title)
-//
-//            item.setValue(title, forKey: "title")
-//
-//            do {
-//                try managedContext.save()
-//                let test = try managedContext.fetch(fetchRequest)
-//
-//                let objectToDelete = test[0] as! NSManagedObject
-//                managedContext.delete(objectToDelete)
-//
-//            }catch let error as NSError{
-//                print("Failed saving: \(error) - \(error.description)")
-//            }
-//
-//       }
-//
     //MARK: - Retrieve items
     func loadItemsFromCoreData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
