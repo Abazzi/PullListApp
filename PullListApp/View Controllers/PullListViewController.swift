@@ -12,14 +12,14 @@ import CoreData
 class PullListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var pullList = [NSManagedObject]()
+    var manageObjectContext: NSManagedObjectContext!
+    var eventArray = [PullListItems]()  // Where **Event** is an model name
     
     
     //MARK: IBOutlets
     @IBOutlet weak var pullListTableView: UITableView!
     
-    @IBAction func addToPull(_ sender: Any) {
-        print("Add button clicked")
-                
+    @IBAction func addToPull(_ sender: Any) {                
         //Alert that prompts the user
         let alert = UIAlertController(title: "Add New Comic", message: "Enter a new Comic Title to your Pull List", preferredStyle: .alert)
                 
@@ -34,7 +34,7 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
                 return
             }
                     
-        self.saveNewItem(name: itemToSave)
+        self.saveNewItem(title: itemToSave)
         self.pullListTableView.reloadData()
     })
         
@@ -55,36 +55,26 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
     //code for deleting row
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            pullList.remove(at: indexPath.row)
-            self.pullListTableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
-    
-    
-    func saveNewItem(name: String){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "PullListItems", in: managedContext)!
-        
-        let item = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        item.setValue(name, forKey: "title")
-        
-        do {
-            try managedContext.save()
-            pullList.append(item)
-            
-            //{
-        }catch let error as NSError{
-            print("Failed saving: \(error) - \(error.description)")
+            let eventArrayItem = eventArray[indexPath.row]
+
+            if editingStyle == .delete {
+                manageObjectContext.delete(eventArrayItem)
+
+                do {
+                    try manageObjectContext.save()
+                } catch let error as NSError {
+                    print("Error While Deleting Note: \(error.userInfo)")
+                }
+                }
+               self.loadSaveData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        manageObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        self.loadSaveData()
         pullListTableView.delegate = self
         pullListTableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -94,7 +84,7 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
             super.viewWillAppear(animated)
             
             loadItemsFromCoreData()
-        }
+    }
 
     // MARK: - Table view data source
 
@@ -140,6 +130,33 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+//    func deleteItem(title: String){
+//           guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//
+//            let managedContext = appDelegate.persistentContainer.viewContext
+//
+//            let entity = NSEntityDescription.entity(forEntityName: "PullListItems", in: managedContext)!
+//
+//            let item = NSManagedObject(entity: entity, insertInto: managedContext)
+//
+//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PullListItems")
+//            fetchRequest.predicate = NSPredicate(format: "title = %@", title)
+//
+//            item.setValue(title, forKey: "title")
+//
+//            do {
+//                try managedContext.save()
+//                let test = try managedContext.fetch(fetchRequest)
+//
+//                let objectToDelete = test[0] as! NSManagedObject
+//                managedContext.delete(objectToDelete)
+//
+//            }catch let error as NSError{
+//                print("Failed saving: \(error) - \(error.description)")
+//            }
+//
+//       }
+//
     //MARK: - Retrieve items
     func loadItemsFromCoreData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -155,6 +172,21 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    func getContext(){
+        
+    }
+    
+    func loadSaveData()  {
+
+        let eventRequest: NSFetchRequest<PullListItems> = PullListItems.fetchRequest()
+        do{
+            eventArray = try manageObjectContext.fetch(eventRequest)
+            self.pullListTableView.reloadData()
+        }catch
+        {
+            print("Could not load save data: \(error.localizedDescription)")
+        }
+    }
 
     /*
     // MARK: - Navigation

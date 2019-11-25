@@ -65,8 +65,6 @@ class FullListViewController: UIViewController, UIGestureRecognizerDelegate {
             do {
                 try managedContext.save()
                 pullList.append(item)
-        
-        //{
             }catch let error as NSError{
                     print("Failed saving: \(error) - \(error.description)")
             }
@@ -178,19 +176,18 @@ extension FullListViewController: UITableViewDataSource{
             
             
             if tableView.indexPathForRow(at: touchPoint) != nil{
-                let alert = UIAlertController(title: nil, message: "Add to your Pull List", preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                let alert = UIAlertController(title: nil, message: "Would you like to add this title to your Pull List?", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Add to Pull List", style: .default, handler: { action in
                       switch action.style{
                       case .default:
-                            if let index = self.comicTitle!.range(of: "#")?.lowerBound {
-                                let substring = self.comicTitle![..<index]
-                                let string = String(substring)
-                                
-                                saveNewItem(name: string)
-                                print(string)
+                        if let index = self.comicTitle!.range(of: "#")?.lowerBound {
+                            let substring = self.comicTitle![..<index]
+                            let string = String(substring)
+                            saveNewItem(name: string)
+                            print(string)
                         }
                       case .cancel:
-                            print("cancel")
+                        print("cancel")
                       case .destructive:
                             print("destructive")
                       @unknown default:
