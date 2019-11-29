@@ -68,7 +68,7 @@
                                             <outlet property="cover" destination="jM8-eQ-eb8" id="oH0-fN-EDV"/>
                                             <outlet property="creator" destination="s6Q-I7-a7Y" id="3gv-ja-nLq"/>
                                             <outlet property="title" destination="sHq-cM-mlg" id="VHw-Np-sV3"/>
-                                            <segue destination="uFd-RM-l7a" kind="show" identifier="showComicDetails" id="h5r-Nm-POD"/>
+                                            <segue destination="uFd-RM-l7a" kind="show" identifier="showComicDetails" customClass="ScaleSegue" customModule="PullListApp" customModuleProvider="target" id="h5r-Nm-POD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -335,51 +335,13 @@
                                 <rect key="frame" x="0.0" y="86" width="414" height="724"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ComicTableViewCell" rowHeight="163" id="kSO-nb-FcV" customClass="ComicTableViewCell" customModule="PullListApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="163"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableViewCell" editingAccessoryType="checkmark" id="ygF-xS-kcB">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kSO-nb-FcV" id="ye0-wG-Vb7">
-                                            <rect key="frame" x="0.0" y="0.0" width="382.5" height="163"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ygF-xS-kcB" id="D1s-9W-t6j">
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n19-Dx-O3H">
-                                                    <rect key="frame" x="20" y="17" width="84" height="128"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="128" id="SnT-Jc-U31"/>
-                                                        <constraint firstAttribute="width" constant="84" id="c1M-dP-bda"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rut-1R-ZlL">
-                                                    <rect key="frame" x="112" y="35" width="252.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUS-LY-Z2y">
-                                                    <rect key="frame" x="112" y="81" width="252.5" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="lUS-LY-Z2y" firstAttribute="top" secondItem="Rut-1R-ZlL" secondAttribute="bottom" constant="25" id="2qR-XM-0UF"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="n19-Dx-O3H" secondAttribute="bottom" constant="7" id="4bg-Qb-gMf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Rut-1R-ZlL" secondAttribute="trailing" constant="10" id="4vn-xL-3Cp"/>
-                                                <constraint firstItem="n19-Dx-O3H" firstAttribute="top" secondItem="ye0-wG-Vb7" secondAttribute="topMargin" constant="6" id="BPj-rQ-LIk"/>
-                                                <constraint firstItem="Rut-1R-ZlL" firstAttribute="leading" secondItem="n19-Dx-O3H" secondAttribute="trailing" constant="8" id="FSt-dA-59G"/>
-                                                <constraint firstItem="lUS-LY-Z2y" firstAttribute="leading" secondItem="n19-Dx-O3H" secondAttribute="trailing" constant="8" id="N5x-FT-TlA"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="lUS-LY-Z2y" secondAttribute="bottom" constant="59" id="UGB-k2-W0t"/>
-                                                <constraint firstItem="n19-Dx-O3H" firstAttribute="leading" secondItem="ye0-wG-Vb7" secondAttribute="leadingMargin" id="epr-e5-gjO"/>
-                                                <constraint firstItem="Rut-1R-ZlL" firstAttribute="top" secondItem="ye0-wG-Vb7" secondAttribute="topMargin" constant="24" id="tta-G0-BoJ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="lUS-LY-Z2y" secondAttribute="trailing" constant="10" id="vo8-r2-F7P"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cover" destination="n19-Dx-O3H" id="Fdf-6F-EQ0"/>
-                                            <outlet property="creator" destination="lUS-LY-Z2y" id="Q7D-Bd-RL5"/>
-                                            <outlet property="title" destination="Rut-1R-ZlL" id="6iU-lX-C6Y"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -404,6 +366,9 @@
                         <viewLayoutGuide key="safeArea" id="8p6-17-4JF"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Pull List" image="book.circle" catalog="system" id="ORF-SV-ZlH"/>
+                    <connections>
+                        <outlet property="resultsTableView" destination="fMQ-az-arB" id="psI-PY-FJv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSw-oG-Brb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -415,7 +380,7 @@
         <image name="book.circle.fill" catalog="system" width="64" height="62"/>
         <image name="gear" catalog="system" width="64" height="60"/>
         <namedColor name="font">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94900000095367432" green="0.94900000095367432" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

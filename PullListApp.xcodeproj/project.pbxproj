@@ -18,6 +18,7 @@
 		F02E9007236BE61F0005EC94 /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */; };
 		F02E9009236C31690005EC94 /* ComicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02E9008236C31690005EC94 /* ComicTableViewCell.swift */; };
 		F02E9012236F60BB0005EC94 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = F02E9011236F60BB0005EC94 /* SideMenu */; };
+		F0C46E802390B9D10045E624 /* ScaleSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C46E7F2390B9D10045E624 /* ScaleSegue.swift */; };
 		F0F1567C23881B4F00CDB05B /* PullListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F1567B23881B4F00CDB05B /* PullListViewController.swift */; };
 		F0F1567E23881B6F00CDB05B /* WeeklyPullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F1567D23881B6F00CDB05B /* WeeklyPullViewController.swift */; };
 		F0F15680238B896900CDB05B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F1567F238B896900CDB05B /* SettingsViewController.swift */; };
@@ -36,6 +37,7 @@
 		F02E9004236BBF040005EC94 /* FullListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullListViewController.swift; sourceTree = "<group>"; };
 		F02E9006236BE61F0005EC94 /* ComicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		F02E9008236C31690005EC94 /* ComicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicTableViewCell.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		F0C46E7F2390B9D10045E624 /* ScaleSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleSegue.swift; sourceTree = "<group>"; };
 		F0F1567B23881B4F00CDB05B /* PullListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullListViewController.swift; sourceTree = "<group>"; };
 		F0F1567D23881B6F00CDB05B /* WeeklyPullViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyPullViewController.swift; sourceTree = "<group>"; };
 		F0F1567F238B896900CDB05B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		F02E8FE8236BBAC60005EC94 /* PullListApp */ = {
 			isa = PBXGroup;
 			children = (
+				F0C46E7E2390B9920045E624 /* New Group */,
 				F0B82A022373262200C8133E /* View Controllers */,
 				F0B82A00237325E700C8133E /* Models */,
 				F02E8FE9236BBAC60005EC94 /* AppDelegate.swift */,
@@ -104,6 +107,14 @@
 				F0F1567F238B896900CDB05B /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		F0C46E7E2390B9920045E624 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				F0C46E7F2390B9D10045E624 /* ScaleSegue.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +202,7 @@
 				F02E8FF4236BBAC60005EC94 /* PullListApp.xcdatamodeld in Sources */,
 				F02E8FEC236BBAC60005EC94 /* SceneDelegate.swift in Sources */,
 				F02E9005236BBF040005EC94 /* FullListViewController.swift in Sources */,
+				F0C46E802390B9D10045E624 /* ScaleSegue.swift in Sources */,
 				F0F1567E23881B6F00CDB05B /* WeeklyPullViewController.swift in Sources */,
 				F0F1567C23881B4F00CDB05B /* PullListViewController.swift in Sources */,
 			);

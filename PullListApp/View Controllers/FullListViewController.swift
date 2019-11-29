@@ -160,32 +160,30 @@ extension FullListViewController: UITableViewDataSource{
     
     @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer){
         if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
-            let touchPoint = longPressGestureRecognizer.location(in: self.view)
+            let touchPoint = longPressGestureRecognizer.location(in: self.tableView)
             
-            if let touchIdex = tableView.indexPathForRow(at: touchPoint){
-                let selectedComic = comics[touchIdex.row]
-                print("Selected \(selectedComic.title)")
-            }
+            if let touchIndex = tableView.indexPathForRow(at: touchPoint){
+            let alert = UIAlertController(title: nil, message: "Would you like to add this title to your PullList?", preferredStyle: .actionSheet)
+            let addComicAction = UIAlertAction(title: "Add to Pull List", style: .default, handler: { action in
+                _ = self.comics[touchIndex.row]
+
+                if let index = self.comicTitle?.range(of: "#")?.lowerBound {
+                    let substring = self.comicTitle?[..<index]
+                    let string = String(substring ?? "title")
+                    saveNewItem(name: string)
+                    print(string)
+                }
+            })
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(addComicAction)
+                               alert.addAction(cancelAction)
+
+                               self.present(alert, animated: true)
+                           }
+                       }
+    
         
-//            if let touchIndex = tableView.indexPathForRow(at: touchPoint){
-//                let alert = UIAlertController(title: nil, message: "Would you like to add this title to your Pull List?", preferredStyle: .actionSheet)
-//                let addComicAction = UIAlertAction(title: "Add to Pull List", style: .default, handler: { action in
-//                    let selectedComic = self.comics[touchIndex.row]
-//
-//                    if let index = self.comicTitle?.range(of: "#")?.lowerBound {
-//                        let substring = self.comicTitle?[..<index]
-//                        let string = String(substring ?? "title")
-////                     saveNewItem(name: string)
-//                     print(string)
-//                   }
-//                })
-//                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//                alert.addAction(addComicAction)
-//                alert.addAction(cancelAction)
-//
-//                self.present(alert, animated: true)
-//            }
-        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

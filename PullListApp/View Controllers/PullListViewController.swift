@@ -52,27 +52,61 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
         return true
     }
     
-    //Code for Deleting a row and editing a row
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        let pullListItem = pullList[indexPath.row]
-            if editingStyle == .delete {
-                manageObjectContext.delete(pullListItem)
+   //MARK: Custom Swipe action for Deleting and Editing
+   func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+       
+       //Edit Gesture
+       let edit = UIContextualAction(
+           style: .normal, title: "Edit", handler: {
+               (action, view, completion) in
+                let pullListItem = self.pullList[indexPath.row]
+               let alert = UIAlertController(title: "Enter Title Below", message: "Read the first part", preferredStyle: .alert)
+               
+               alert.addTextField()
+               
+               let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+               
+               let changeAction = UIAlertAction(title: "Save", style: .default, handler: {
+                       action in
+                   guard let textfield = alert.textFields?.first, let itemToSave = textfield.text
+                       else {
+                           return
+                       }
+                pullListItem.setValue(itemToSave, forKey: "title")
+                self.pullListTableView.reloadData()
+                   
 
-                do {
-                    try manageObjectContext.save()
-                    
-                } catch let error as NSError {
-                    print("Error While Deleting Note: \(error.userInfo)")
-                }
-            }
-               self.loadSaveData()
-
-        
-        if editingStyle == .insert{
-            print("Test")
-        }
-    }
+               })
+               alert.addAction(cancelAction)
+               alert.addAction(changeAction)
+                              
+               self.present(alert, animated: true, completion: nil)
+               
+               completion(true)
+       })
+       
+       
+       //Delete Gesture
+       let delete = UIContextualAction(style: .destructive, title: "Delete", handler: {
+           (action, view, completion) in
+           let pullListItem = self.pullList[indexPath.row]
+           self.manageObjectContext.delete(pullListItem)
+           do{
+               try self.manageObjectContext.save()
+           } catch let error as NSError {
+               print("Error while deleteing item: \(error.userInfo)")
+           }
+           self.loadSaveData()
+           completion(true)
+       })
+       edit.backgroundColor = .blue
+       let configuration = UISwipeActionsConfiguration(actions: [edit,delete])
+       configuration.performsFirstActionWithFullSwipe = false
+       return configuration
+   }
+    
+    //Custom Swipe action
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,7 +189,6 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadSaveData()  {
-
         let eventRequest: NSFetchRequest<PullListItems> = PullListItems.fetchRequest()
         do{
             pullList = try manageObjectContext.fetch(eventRequest)
