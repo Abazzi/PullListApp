@@ -48,26 +48,30 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
-    //Code for gestures
+    //Code to enable gestures
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    //code for deleting row
+    //Code for Deleting a row and editing a row
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete) {
-            let eventArrayItem = eventArray[indexPath.row]
-
+        
+        let eventArrayItem = eventArray[indexPath.row]
             if editingStyle == .delete {
                 manageObjectContext.delete(eventArrayItem)
 
                 do {
                     try manageObjectContext.save()
+                    
                 } catch let error as NSError {
                     print("Error While Deleting Note: \(error.userInfo)")
                 }
-                }
+            }
                self.loadSaveData()
+
+        
+        if editingStyle == .insert{
+            print("Test")
         }
     }
     
@@ -85,7 +89,6 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            
             loadItemsFromCoreData()
     }
 

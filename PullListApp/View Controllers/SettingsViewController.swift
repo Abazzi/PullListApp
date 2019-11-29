@@ -16,7 +16,13 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func switchToggle(_ sender: UISwitch) {
-        UIApplication.shared.windows.forEach { window in window.overrideUserInterfaceStyle = .dark}
+        if (sender.isOn == true){
+            UIApplication.shared.windows.forEach { window in window.overrideUserInterfaceStyle = .dark
+            }
+        } else {
+            UIApplication.shared.windows.forEach { window in window.overrideUserInterfaceStyle = .light}
+
+        }
     }
     /*
     // MARK: - Navigation

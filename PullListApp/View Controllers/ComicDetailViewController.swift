@@ -19,13 +19,13 @@ class ComicDetailViewController: UIViewController {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var diamondID: UILabel!
-
-    @IBOutlet weak var comicDescription: UILabel!
+    @IBOutlet weak var comicDescription: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        comicDescription.allowsEditingTextAttributes = false
 
-        
         if let comic = comic{
             comicTitle.text = comic.title
             creators.text = comic.creators
@@ -33,7 +33,6 @@ class ComicDetailViewController: UIViewController {
             price.text = comic.price
             releaseDate.text = comic.releaseDate
             diamondID.text = comic.diamondID
-            
             comicDescription.text = comic.description
             
             let imageURL = URL(string: "https://dak9jkjr5v1f7.cloudfront.net/images/\(comic.diamondID).thumbnail.png")!

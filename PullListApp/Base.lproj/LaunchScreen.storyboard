@@ -15,19 +15,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dress" translatesAutoresizingMaskIntoConstraints="NO" id="Kjp-ee-CUk">
-                                <rect key="frame" x="0.0" y="-22" width="127" height="349"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="uCZ-CC-xOz">
+                                <rect key="frame" x="87" y="530" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="327" id="91W-YF-8Y1"/>
-                                    <constraint firstAttribute="width" constant="240" id="bBd-7l-EJu"/>
+                                    <constraint firstAttribute="height" constant="128" id="tbE-UQ-tSt"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Divider" translatesAutoresizingMaskIntoConstraints="NO" id="EGE-4b-czc">
+                                <rect key="frame" x="57" y="53" width="300" height="500"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.90980392156862744" green="0.33090753424657532" blue="0.39215686274509803" alpha="0.75861515410958902" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Kjp-ee-CUk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="0cC-dO-Vm4"/>
-                            <constraint firstItem="Kjp-ee-CUk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="86" id="WWj-1j-YWC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Kjp-ee-CUk" secondAttribute="trailing" constant="87" id="owo-7m-Ew4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uCZ-CC-xOz" secondAttribute="trailing" constant="87" id="8j9-aM-ZnW"/>
+                            <constraint firstItem="EGE-4b-czc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="COL-x9-Cmg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EGE-4b-czc" secondAttribute="bottom" constant="309" id="Vo2-sG-XYv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uCZ-CC-xOz" secondAttribute="bottom" constant="204" id="WGY-nf-Y7S"/>
+                            <constraint firstItem="EGE-4b-czc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="9" id="kG7-fJ-Uj5"/>
+                            <constraint firstItem="EGE-4b-czc" firstAttribute="centerX" secondItem="uCZ-CC-xOz" secondAttribute="centerX" id="mIO-CQ-aes"/>
+                            <constraint firstItem="uCZ-CC-xOz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="qlr-EQ-nrM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,6 +44,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dress" width="1417" height="1890"/>
+        <image name="Divider" width="2550" height="4200"/>
+        <image name="title" width="1920" height="1080"/>
     </resources>
 </document>
