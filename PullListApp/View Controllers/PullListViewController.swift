@@ -14,7 +14,6 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
     //MARK: Properties
     var pullList = [NSManagedObject]()
     var manageObjectContext: NSManagedObjectContext!
-    var eventArray = [PullListItems]()
     
     
     //MARK: IBOutlets
@@ -56,9 +55,9 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
     //Code for Deleting a row and editing a row
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        let eventArrayItem = eventArray[indexPath.row]
+        let pullListItem = pullList[indexPath.row]
             if editingStyle == .delete {
-                manageObjectContext.delete(eventArrayItem)
+                manageObjectContext.delete(pullListItem)
 
                 do {
                     try manageObjectContext.save()
@@ -159,7 +158,7 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
 
         let eventRequest: NSFetchRequest<PullListItems> = PullListItems.fetchRequest()
         do{
-            eventArray = try manageObjectContext.fetch(eventRequest)
+            pullList = try manageObjectContext.fetch(eventRequest)
             self.pullListTableView.reloadData()
         }catch
         {
