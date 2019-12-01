@@ -9,28 +9,36 @@
 import UIKit
 import CoreData
 
-class WeeklyPullViewController: UIViewController, UITableViewDataSource {
+class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     var pullList = [NSManagedObject]()
     var manageObjectContext: NSManagedObjectContext!
+    var pullListTitles: [String] = []
     var comics: [Comic] = []
+
+    
 
     @IBOutlet weak var resultsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.loadSaveData()
-
         // Do any additional setup after loading the view.
+        manageObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        resultsTableView.delegate = self
+        resultsTableView.dataSource = self
+        createComicArray()
+        pullListSearch()
+        self.loadSaveData()
+//        testPrint()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
+        super.viewWillAppear(animated)
+        loadItemsFromCoreData()
         
-        
-//            loadItemsFromCoreData()
     }
     
     func createComicApiURL(searchBarText: String) -> URL {
@@ -48,14 +56,83 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource {
            return url!
        }
     
-    func createComicArray(comic: Comic){
+    func createComicArray() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PullListItems")
+
+        do {
+            pullList = try managedContext.fetch(fetchRequest)
+        }catch {
+            print("could not load save data: \(error.localizedDescription)")
+        }
         
+        for title in pullList as [NSManagedObject]{
+            pullListTitles.append(title.value(forKey: "title") as! String)
+        }
+        
+    }
+    
+    func testPrint(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PullListItemsResults")
+
+        do {
+            pullList = try managedContext.fetch(fetchRequest)
+        }catch {
+            print("could not load save data: \(error.localizedDescription)")
+        }
+               
+    }
+    
+    func pullListSearch(){
+        
+        comics = []
+        
+        for titles in pullListTitles{
+            
+            let url = createComicApiURL(searchBarText: titles)
+
+            let dataTask = URLSession.shared.dataTask(with: url){
+                data, responce, error in
+
+                if let error = error {
+                    print("There was an error getting the data -\(error)")
+                }else{
+
+                    do{
+                        guard let data = data else {return}
+                        let decoder = JSONDecoder()
+                        let downloadedResults = try decoder.decode(Comics.self, from: data)
+                        self.comics = downloadedResults.comics
+                    } catch let error{
+                        print(error)
+                    }
+                    DispatchQueue.main.async {
+                        self.resultsTableView.reloadData()
+                        self.saveNewItem(comic: self.comics[0])
+                    }
+                }
+            }
+            dataTask.resume()
+        }
     }
     
     //MARK: Table View Stubs
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pullList.count
     }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+            // #warning Incomplete implementation, return the number of sections
+            return 1
+        }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,9 +145,9 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource {
         
     }
     
+    //MARK: CRUD Functions
     func loadSaveData()  {
-
-        let eventRequest: NSFetchRequest<PullListComicResults> = PullListComicResults.fetchRequest()
+        let eventRequest: NSFetchRequest<PullListItemsResults> = PullListItemsResults.fetchRequest()
         do{
             pullList = try manageObjectContext.fetch(eventRequest)
             self.resultsTableView.reloadData()
@@ -86,7 +163,7 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PullListItems")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PullListItemsResults")
         
         do {
             pullList = try managedContext.fetch(fetchRequest)
@@ -100,17 +177,11 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource {
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let entity = NSEntityDescription.entity(forEntityName: "PullListComicResults", in: managedContext)!
+        let entity = NSEntityDescription.entity(forEntityName: "PullListItemsResults", in: managedContext)!
         
         let item = NSManagedObject(entity: entity, insertInto: managedContext)
         
         item.setValue(comic.title, forKey: "title")
-        item.setValue(comic.creators, forKey: "creator")
-        item.setValue(comic.description, forKey: "description")
-        item.setValue(comic.diamondID, forKey: "diamondID")
-        item.setValue(comic.publisher, forKey: "publisher")
-        item.setValue(comic.price, forKey: "price")
-        item.setValue(comic.releaseDate, forKey: "releaseDate")
         
         do {
             try managedContext.save()

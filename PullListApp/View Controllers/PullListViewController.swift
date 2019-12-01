@@ -60,7 +60,7 @@ class PullListViewController: UIViewController, UITableViewDataSource, UITableVi
            style: .normal, title: "Edit", handler: {
                (action, view, completion) in
                 let pullListItem = self.pullList[indexPath.row]
-               let alert = UIAlertController(title: "Enter Title Below", message: "Read the first part", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Enter Title Below", message: "What is the new title", preferredStyle: .alert)
                
                alert.addTextField()
                
