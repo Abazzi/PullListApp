@@ -165,22 +165,27 @@ extension FullListViewController: UITableViewDataSource{
             if let touchIndex = tableView.indexPathForRow(at: touchPoint){
             let alert = UIAlertController(title: nil, message: "Would you like to add this title to your PullList?", preferredStyle: .actionSheet)
             let addComicAction = UIAlertAction(title: "Add to Pull List", style: .default, handler: { action in
-                _ = self.comics[touchIndex.row]
-
+                self.comicTitle = self.comics[touchIndex.row].title
+                
                 if let index = self.comicTitle?.range(of: "#")?.lowerBound {
                     let substring = self.comicTitle?[..<index]
                     let string = String(substring ?? "title")
                     saveNewItem(name: string)
                     print(string)
+                } else if let comic = self.comicTitle {
+                    saveNewItem(name: comic)
+                    print(comic)
                 }
             })
+            
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alert.addAction(addComicAction)
-                               alert.addAction(cancelAction)
+            alert.addAction(cancelAction)
 
-                               self.present(alert, animated: true)
-                           }
-                       }
+            self.present(alert, animated: true)
+        }
+        
+    }
     
         
         

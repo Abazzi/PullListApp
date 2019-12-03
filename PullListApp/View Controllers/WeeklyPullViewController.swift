@@ -115,7 +115,7 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
                     }
                     DispatchQueue.main.async {
                         self.resultsTableView.reloadData()
-                        self.saveNewItem(comic: self.comics[0])
+                        self.checkIfItemExists(comic: self.comics[0])
                     }
                 }
             }
@@ -157,6 +157,31 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    //Code to enable gestures
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    
+    //Edit Gesture
+     let delete = UIContextualAction(style: .destructive, title: "Delete", handler: {
+         (action, view, completion) in
+         let pullListItem = self.pullList[indexPath.row]
+         self.manageObjectContext.delete(pullListItem)
+         do{
+             try self.manageObjectContext.save()
+         } catch let error as NSError {
+             print("Error while deleteing item: \(error.userInfo)")
+         }
+         self.loadSaveData()
+         completion(true)
+     })
+        let configuration = UISwipeActionsConfiguration(actions: [delete])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
+    }
+    
     
     func loadItemsFromCoreData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -190,6 +215,26 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
             //{
         }catch let error as NSError{
             print("Failed saving: \(error) - \(error.description)")
+        }
+    }
+    
+    func checkIfItemExists(comic: Comic){
+        let request = NSFetchRequest<PullListItemsResults>(entityName: "title")
+        let predicate = NSPredicate(format: "title = '\(comic.title)'")
+        
+        request.predicate = predicate
+        request.fetchLimit = 1
+        
+        do{
+            let count = try manageObjectContext.count(for: request)
+            if (count == 0){
+                saveNewItem(comic: comic)
+            } else {
+                print("Comics already exists")
+            }
+        }
+        catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
         }
     }
     
