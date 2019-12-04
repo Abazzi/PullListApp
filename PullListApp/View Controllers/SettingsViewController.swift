@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    
+        
     @IBAction func switchToggle(_ sender: UISwitch) {
         if (sender.isOn == true){
             UIApplication.shared.windows.forEach { window in window.overrideUserInterfaceStyle = .dark
@@ -24,6 +24,8 @@ class SettingsViewController: UIViewController {
 
         }
     }
+    
+    
     /*
     // MARK: - Navigation
 

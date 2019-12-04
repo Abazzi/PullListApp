@@ -34,3 +34,25 @@ struct Comic: Codable{
     var diamondID: String
 
 }
+
+extension Comic:Hashable {
+    static func ==(lhs: Comic, rhs: Comic) -> Bool{
+        lhs.publisher == rhs.publisher &&
+            lhs.description == rhs.description &&
+            lhs.title == rhs.title &&
+            lhs.price == rhs.price &&
+            lhs.creators == rhs.creators &&
+            lhs.releaseDate == rhs.releaseDate &&
+            lhs.diamondID == rhs.diamondID
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(publisher)
+        hasher.combine(description)
+        hasher.combine(title)
+        hasher.combine(price)
+        hasher.combine(creators)
+        hasher.combine(releaseDate)
+        hasher.combine(diamondID)
+    }
+}

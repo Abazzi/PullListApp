@@ -11,28 +11,29 @@ import CoreData
 
 class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
+    //MARK: Properties
     var pullList = [NSManagedObject]()
     var manageObjectContext: NSManagedObjectContext!
-    var pullListTitles: [String] = []
+    var pullListTitles: Set<String> = []
     var comics: [Comic] = []
-
+    var comicArray = [String]()
+    var superDuperComicsArray = [Comic]()
     
-
+    //MARK: IBoutlets
     @IBOutlet weak var resultsTableView: UITableView!
+    
+    @IBAction func refresh(_ sender: Any) {
+        createComicArray()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         manageObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
         resultsTableView.delegate = self
         resultsTableView.dataSource = self
         createComicArray()
         pullListSearch()
-        self.loadSaveData()
-//        testPrint()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +42,7 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    //MARK: Functions
     func createComicApiURL(searchBarText: String) -> URL {
            
            //Delete any non friendly characters
@@ -65,57 +67,41 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
 
         do {
             pullList = try managedContext.fetch(fetchRequest)
-        }catch {
+            
+        } catch{
             print("could not load save data: \(error.localizedDescription)")
         }
         
-        for title in pullList as [NSManagedObject]{
-            pullListTitles.append(title.value(forKey: "title") as! String)
+        for title in pullList as [NSManagedObject] {
+            pullListTitles.insert(title.value(forKey: "title") as! String)
         }
         
+        comicArray = Array(pullListTitles)
+
     }
-    
-    func testPrint(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
-
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PullListItemsResults")
-
-        do {
-            pullList = try managedContext.fetch(fetchRequest)
-        }catch {
-            print("could not load save data: \(error.localizedDescription)")
-        }
-               
-    }
-    
+       
     func pullListSearch(){
-        
         comics = []
         
-        for titles in pullListTitles{
-            
-            let url = createComicApiURL(searchBarText: titles)
-
+        for title in comicArray{
+            let url = createComicApiURL(searchBarText: title)
             let dataTask = URLSession.shared.dataTask(with: url){
                 data, responce, error in
-
                 if let error = error {
                     print("There was an error getting the data -\(error)")
                 }else{
-
                     do{
                         guard let data = data else {return}
                         let decoder = JSONDecoder()
                         let downloadedResults = try decoder.decode(Comics.self, from: data)
-                        self.comics = downloadedResults.comics
+//                        self.comics = downloadedResults.comics
+                        self.superDuperComicsArray += downloadedResults.comics
                     } catch let error{
                         print(error)
                     }
                     DispatchQueue.main.async {
                         self.resultsTableView.reloadData()
-                        self.checkIfItemExists(comic: self.comics[0])
+//                        self.saveNewItem(comic: self.comics[0])
                     }
                 }
             }
@@ -123,9 +109,15 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [Comic]!{
+        return superDuperComicsArray
+        
+    }
+    
+    
     //MARK: Table View Stubs
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pullList.count
+        return superDuperComicsArray.count
     }
     
     
@@ -137,44 +129,44 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-        let item = pullList[indexPath.row]
-        
-        cell.textLabel?.text = item.value(forKey: "title") as? String
-        
+        let comic = superDuperComicsArray[indexPath.row]
+        cell.textLabel?.text = comic.title
+        cell.detailTextLabel?.text = comic.price
         return cell
-        
-    }
-    
-    //MARK: CRUD Functions
-    func loadSaveData()  {
-        let eventRequest: NSFetchRequest<PullListItemsResults> = PullListItemsResults.fetchRequest()
-        do{
-            pullList = try manageObjectContext.fetch(eventRequest)
-            self.resultsTableView.reloadData()
-        }catch
-        {
-            print("Could not load save data: \(error.localizedDescription)")
-        }
     }
     
     //Code to enable gestures
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+       func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+           return true
+       }
+       
     
+    //MARK: CRUD Functions
+//    func loadSaveData()  {
+//        let eventRequest: NSFetchRequest<PullListItemsResults> = PullListItemsResults.fetchRequest()
+//        do{
+//            pullList = try manageObjectContext.fetch(eventRequest)
+//            self.resultsTableView.reloadData()
+//        }catch
+//        {
+//            print("Could not load save data: \(error.localizedDescription)")
+//        }
+//    }
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
     
-    //Edit Gesture
+    
+    //MARK:Delete Gesture
      let delete = UIContextualAction(style: .destructive, title: "Delete", handler: {
          (action, view, completion) in
-         let pullListItem = self.pullList[indexPath.row]
-         self.manageObjectContext.delete(pullListItem)
-         do{
-             try self.manageObjectContext.save()
-         } catch let error as NSError {
-             print("Error while deleteing item: \(error.userInfo)")
-         }
-         self.loadSaveData()
+        let pullListItem = self.superDuperComicsArray[indexPath.row]
+        self.superDuperComicsArray.remove(at: indexPath.row)
+        self.resultsTableView.reloadData()
+//         do{
+//             try self.manageObjectContext.save()
+//         } catch let error as NSError {
+//             print("Error while deleteing item: \(error.userInfo)")
+//         }
          completion(true)
      })
         let configuration = UISwipeActionsConfiguration(actions: [delete])
@@ -212,31 +204,11 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
             try managedContext.save()
             pullList.append(item)
             
-            //{
         }catch let error as NSError{
             print("Failed saving: \(error) - \(error.description)")
         }
     }
     
-    func checkIfItemExists(comic: Comic){
-        let request = NSFetchRequest<PullListItemsResults>(entityName: "title")
-        let predicate = NSPredicate(format: "title = '\(comic.title)'")
-        
-        request.predicate = predicate
-        request.fetchLimit = 1
-        
-        do{
-            let count = try manageObjectContext.count(for: request)
-            if (count == 0){
-                saveNewItem(comic: comic)
-            } else {
-                print("Comics already exists")
-            }
-        }
-        catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-    }
     
     
     /*
