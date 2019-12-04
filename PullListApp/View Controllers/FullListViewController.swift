@@ -30,6 +30,8 @@ class FullListViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.view.addGestureRecognizer(longPressRecognizer)
     
+        //Makes Searchbar border transparent. 
+        searchBar.backgroundImage = UIImage()
         // Do any additional setup after loading the view.
     }
 
