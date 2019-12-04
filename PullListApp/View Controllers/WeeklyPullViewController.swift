@@ -23,7 +23,12 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var resultsTableView: UITableView!
     
     @IBAction func refresh(_ sender: Any) {
+        pullListTitles = []
+        comicArray = []
+        superDuperComicsArray = []
         createComicArray()
+        pullListSearch()
+        resultsTableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -153,26 +158,27 @@ class WeeklyPullViewController: UIViewController, UITableViewDataSource, UITable
 //        }
 //    }
 
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    
-    
-    //MARK:Delete Gesture
-     let delete = UIContextualAction(style: .destructive, title: "Delete", handler: {
-         (action, view, completion) in
-        let pullListItem = self.superDuperComicsArray[indexPath.row]
-        self.superDuperComicsArray.remove(at: indexPath.row)
-        self.resultsTableView.reloadData()
-//         do{
-//             try self.manageObjectContext.save()
-//         } catch let error as NSError {
-//             print("Error while deleteing item: \(error.userInfo)")
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//
+//
+//    //MARK:Delete Gesture
+//     let delete = UIContextualAction(style: .destructive, title: "Delete", handler: {
+//         (action, view, completion) in
+//        let pullListItem = self.superDuperComicsArray[indexPath.row]
+//        self.superDuperComicsArray.remove(at: indexPath.row)
+//        self.resultsTableView.reloadData()
+//        do{
+//            try self.manageObjectContext.save()
+//        } catch let error as NSError {
+//            print("Error while deleteing item: \(error.userInfo)")
 //         }
-         completion(true)
-     })
-        let configuration = UISwipeActionsConfiguration(actions: [delete])
-        configuration.performsFirstActionWithFullSwipe = false
-        return configuration
-    }
+//         completion(true)
+//     })
+//        let configuration = UISwipeActionsConfiguration(actions: [delete])
+//        configuration.performsFirstActionWithFullSwipe = false
+//        return configuration
+//    }
+
     
     
     func loadItemsFromCoreData(){

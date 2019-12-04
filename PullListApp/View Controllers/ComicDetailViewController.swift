@@ -9,10 +9,12 @@
 import UIKit
 
 class ComicDetailViewController: UIViewController {
-    
+  
+    //MARK: Properties
     var comic: Comic?
-    @IBOutlet weak var cover: UIImageView!
     
+    //MARK: IBoutlets
+    @IBOutlet weak var cover: UIImageView!
     @IBOutlet weak var comicTitle: UILabel!
     @IBOutlet weak var creators: UILabel!
     @IBOutlet weak var publisher: UILabel!
@@ -21,7 +23,7 @@ class ComicDetailViewController: UIViewController {
     @IBOutlet weak var diamondID: UILabel!
     @IBOutlet weak var comicDescription: UITextView!
     
-    
+    //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         comicDescription.allowsEditingTextAttributes = false

@@ -35,6 +35,7 @@ struct Comic: Codable{
 
 }
 
+//MARK: Extensions
 extension Comic:Hashable {
     static func ==(lhs: Comic, rhs: Comic) -> Bool{
         lhs.publisher == rhs.publisher &&

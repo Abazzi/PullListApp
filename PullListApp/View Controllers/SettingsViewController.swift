@@ -10,11 +10,13 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
         
+    //MARK: IBoutlets
     @IBAction func switchToggle(_ sender: UISwitch) {
         if (sender.isOn == true){
             UIApplication.shared.windows.forEach { window in window.overrideUserInterfaceStyle = .dark

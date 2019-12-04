@@ -11,9 +11,11 @@ import CoreData
 
 class FullListViewController: UIViewController, UIGestureRecognizerDelegate {
     
+    //MARK: Properties
     var comics: [Comic] = []
     var comicTitle: String?
     
+    //MARK: IBOutlets
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,6 +36,7 @@ class FullListViewController: UIViewController, UIGestureRecognizerDelegate {
    
 }
 
+    //MARK: Functions
     func createComicApiURL(searchBarText: String) -> URL {
         
         //Delete any non friendly characters
@@ -81,7 +84,7 @@ class FullListViewController: UIViewController, UIGestureRecognizerDelegate {
     */
 
 
-
+//MARK: SearchBar Extension
 extension FullListViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text,
@@ -119,6 +122,7 @@ extension FullListViewController: UISearchBarDelegate{
        }
    }
 
+//MARK: TableViewDelegate
 extension FullListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -126,6 +130,7 @@ extension FullListViewController: UITableViewDelegate{
         
 }
 
+//MARK: TableViewDataSource
 extension FullListViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comics.count
@@ -157,7 +162,7 @@ extension FullListViewController: UITableViewDataSource{
         
         return cell
     }
-    
+    //MARK: Gesture
     @objc func longPress(longPressGestureRecognizer: UILongPressGestureRecognizer){
         if longPressGestureRecognizer.state == UIGestureRecognizer.State.began {
             let touchPoint = longPressGestureRecognizer.location(in: self.tableView)

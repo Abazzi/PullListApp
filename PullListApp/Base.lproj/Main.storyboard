@@ -381,7 +381,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6Z-71-4KK">
-                                <rect key="frame" x="8" y="48" width="91" height="30"/>
+                                <rect key="frame" x="8" y="52" width="91" height="26"/>
                                 <state key="normal" title="View Pull List"/>
                                 <connections>
                                     <segue destination="THO-YY-usK" kind="show" id="pd6-bO-oQO"/>
@@ -403,6 +403,8 @@
                             <constraint firstItem="ZKg-8e-5aZ" firstAttribute="top" secondItem="8p6-17-4JF" secondAttribute="top" constant="8" id="ExX-Qa-2fo"/>
                             <constraint firstItem="fMQ-az-arB" firstAttribute="centerX" secondItem="CcW-qw-s9j" secondAttribute="centerX" id="Fvr-od-Mry"/>
                             <constraint firstItem="fMQ-az-arB" firstAttribute="top" secondItem="ZKg-8e-5aZ" secondAttribute="bottom" constant="8" id="Hqf-qu-Cut"/>
+                            <constraint firstItem="P6Z-71-4KK" firstAttribute="top" secondItem="8p6-17-4JF" secondAttribute="top" constant="8" id="IzZ-d0-uF8"/>
+                            <constraint firstItem="ZKg-8e-5aZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P6Z-71-4KK" secondAttribute="trailing" constant="8" id="fdu-Lj-dAB"/>
                             <constraint firstItem="fMQ-az-arB" firstAttribute="top" secondItem="P6Z-71-4KK" secondAttribute="bottom" constant="8" id="fsJ-zg-ULu"/>
                             <constraint firstItem="P6Z-71-4KK" firstAttribute="leading" secondItem="8p6-17-4JF" secondAttribute="leading" constant="8" id="kPd-ld-rf2"/>
                             <constraint firstItem="8p6-17-4JF" firstAttribute="trailing" secondItem="ZKg-8e-5aZ" secondAttribute="trailing" constant="8" id="wnN-cB-eAZ"/>
