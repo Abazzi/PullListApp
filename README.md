@@ -3,10 +3,6 @@ This is my final Project for iOS 3. It's a app that allows the user to manage th
 
 ![alt text](https://adambazzi.co/img/icon.png "App Logo")
 
-#Here are some GIFs of the app in Action
+# Here are some GIFs of the app in Action
 
-![alt text](https://adambazzi.co/img/pullListAppClip1.gif "Clip 1")
-![alt text](https://adambazzi.co/img/pullListAppClip1.gif "Clip 2")
-![alt text](https://adambazzi.co/img/pullListAppClip1.gif "Clip 3")
-![alt text](https://adambazzi.co/img/pullListAppClip1.gif "Clip 4")
-![alt text](https://adambazzi.co/img/pullListAppClip1.gif "Clip 5")
+https://www.youtube.com/watch?v=vlEZDi7y0g4&feature=youtu.be
